@@ -10,7 +10,7 @@ class Meal:
     """
 
     def __init__(self, user_chat_id: str, content: str, calories: int):
-        self.id = uuid.uuid4()
+        self.id = str(uuid.uuid4())
         self.user_chat_id = user_chat_id
         self.content = content
         self.calories = calories

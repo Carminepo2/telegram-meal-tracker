@@ -16,16 +16,27 @@ class PersistenceStore(Singleton):
 
         self.__create_tables()
 
-    def add_meal(self, meal: Meal):
+    def add_meal(self, meal: Meal) -> None:
         """
         Adds a meal to the database
         """
 
         self.cursor.execute(
-            "INSERT INTO meals (user_chat_id, content, calories) VALUES (?, ?, ?)",
-            (meal.user_chat_id, meal.content, meal.calories),
+            "INSERT INTO meals (id, user_chat_id, content, calories) VALUES (?, ?, ?, ?)",
+            (meal.id, meal.user_chat_id, meal.content, meal.calories),
         )
         self.db.commit()
+
+    def get_user_meals(self, user_chat_id: str):
+        """
+        Retrieves all the meals for a given user
+        """
+
+        self.cursor.execute(
+            "SELECT * FROM meals WHERE user_chat_id = ?", (user_chat_id,)
+        )
+        a = self.cursor.fetchall()
+        print(a)
 
     def __create_tables(self):
         """

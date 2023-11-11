@@ -16,6 +16,8 @@ from telegram.ext import ApplicationBuilder
 from configs.env import env
 
 from handlers import hello_handler
+from db.persistence_store import persistence_store
+from models.Meal import Meal
 
 
 def main():
@@ -26,7 +28,9 @@ def main():
     app.add_handler(hello_handler)
 
     logger.info("Starting polling...")
-    app.run_polling()
+    persistence_store.add_meal(Meal("123", "content2", 123))
+    persistence_store.get_user_meals("123")
+    # app.run_polling()
 
 
 if __name__ == "__main__":
