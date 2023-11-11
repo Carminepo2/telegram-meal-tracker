@@ -13,15 +13,15 @@ __license__ = "MIT"
 
 from logzero import logger
 from telegram.ext import ApplicationBuilder
+from configs.env import env
 
-from config import config
 from handlers import hello_handler
 
 
 def main():
     """Starts the bot"""
 
-    app = ApplicationBuilder().token(config.bot_token).build()
+    app = ApplicationBuilder().token(env.bot_token).build()
 
     app.add_handler(hello_handler)
 

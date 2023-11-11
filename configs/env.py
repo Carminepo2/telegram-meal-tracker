@@ -1,16 +1,11 @@
 import os
 from dotenv import load_dotenv
 
+from utils.singleton import Singleton
 
-class Config:
-    """Contains all the necessary configuration variables for the application"""
 
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not isinstance(cls._instance, cls):
-            cls._instance = super(Config, cls).__new__(cls, *args, **kwargs)
-        return cls._instance
+class Env(Singleton):
+    """Contains all the env variables"""
 
     def __init__(self):
         load_dotenv()
@@ -27,4 +22,4 @@ class Config:
         return value
 
 
-config = Config()
+env = Env()
