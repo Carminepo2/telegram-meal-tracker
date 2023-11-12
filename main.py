@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.12
 
 """
 This bot is supposed to be used to track our meals through the day.
