@@ -1,4 +1,4 @@
-from db import Food, Ingredient, Meal, User
+from database.db import Food, Ingredient, Meal, User
 from utils.singleton import Singleton
 
 
@@ -59,8 +59,8 @@ class PersistenceManager(Singleton):
 
     @staticmethod
     def add_meal(consumer: User, ingredients: list[Ingredient]) -> Meal:
-        meal = Meal.create(consumer=consumer, ingredients=ingredients)
+        meal = Meal.create(consumer=consumer)
+        meal.save()
         for ingredient in ingredients:
             meal.ingredients.add(ingredient)
-        meal.save()
         return meal

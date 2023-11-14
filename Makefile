@@ -10,6 +10,9 @@ run: $(VENV)/bin/activate
 dev: $(VENV)/bin/activate
 	npx nodemon --exec $(PYTHON) ${MAIN}
 
+test: $(VENV)/bin/activate
+	$(PYTHON) -m unittest discover -s ./tests
+
 $(VENV)/bin/activate: requirements.txt
 	python3 -m venv $(VENV)
 	$(PIP) install -r requirements.txt
