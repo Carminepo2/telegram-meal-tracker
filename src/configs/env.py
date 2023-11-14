@@ -11,9 +11,14 @@ class Env(Singleton):
         load_dotenv()
 
     @property
-    def bot_token(self) -> str:
+    def BOT_TOKEN(self) -> str:
         """Returns the bot token that is used to authenticate with the Telegram API"""
         return self.__get_env("BOT_TOKEN")
+
+    @property
+    def DATABASE(self) -> str:
+        """Returns the bot token that is used to authenticate with the Telegram API"""
+        return self.__get_env("DATABASE")
 
     def __get_env(self, key: str) -> str:
         """Returns the value of the environment variable with the given key"""
@@ -22,4 +27,4 @@ class Env(Singleton):
         return value
 
 
-env = Env()
+ENV = Env()

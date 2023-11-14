@@ -1,12 +1,14 @@
+
+MAIN = ./src/main.py
 VENV = .venv
 PYTHON = $(VENV)/bin/python3
 PIP = $(VENV)/bin/pip
 
 run: $(VENV)/bin/activate
-	$(PYTHON) main.py
+	$(PYTHON) ${MAIN}
 
 dev: $(VENV)/bin/activate
-	npx nodemon --exec $(PYTHON) main.py
+	npx nodemon --exec $(PYTHON) ${MAIN}
 
 $(VENV)/bin/activate: requirements.txt
 	python3 -m venv $(VENV)
@@ -19,7 +21,7 @@ format:
 	black .
 
 lint:
-	pylint main.py
+	pylint ${MAIN}
 
 clean:
 	rm -rf __pycache__
