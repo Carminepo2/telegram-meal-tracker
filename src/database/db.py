@@ -36,6 +36,20 @@ class User(BaseModel):
     created_at = DateTimeField(default=datetime.datetime.now)
 
 
+class Group(BaseModel):
+    """
+    This model represents the group of the bot
+    """
+
+    id = IntegerField(primary_key=True, unique=True)
+    breakfast_reminder = IntegerField()
+    # breakfast_reminder_time = DateTimeField()
+    lunch_reminder = IntegerField()
+    # lunch_reminder_time = DateTimeField()
+    dinner_reminder = IntegerField()
+    # dinner_reminder_time = DateTimeField()
+
+
 class Food(BaseModel):
     """
     This model represents the food that the user can eat.
@@ -66,4 +80,6 @@ class Meal(BaseModel):
     timestamp = DateTimeField(default=datetime.datetime.now)
 
 
-db.create_tables([Food, Meal, Ingredient, User, Meal.ingredients.get_through_model()])
+db.create_tables(
+    [Food, Meal, Ingredient, User, Meal.ingredients.get_through_model(), Group]
+)
