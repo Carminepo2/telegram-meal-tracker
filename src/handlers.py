@@ -7,6 +7,8 @@ async def hello_callback(update: Update, _: ContextTypes.DEFAULT_TYPE) -> None:
     """Say hello to the user"""
     assert update.message is not None
 
+    print(update.message.chat_id)
+
     await update.message.reply_text("hello")
 
 

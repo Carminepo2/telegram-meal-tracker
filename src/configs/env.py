@@ -1,24 +1,27 @@
 import os
 from dotenv import load_dotenv
 
+from utils.singleton import Singleton
 
-class Config:
-    """Contains all the necessary configuration variables for the application"""
 
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if not isinstance(cls._instance, cls):
-            cls._instance = super(Config, cls).__new__(cls, *args, **kwargs)
-        return cls._instance
+class Env(Singleton):
+    """Contains all the env variables"""
 
     def __init__(self):
         load_dotenv()
 
     @property
-    def bot_token(self) -> str:
+    def BOT_TOKEN(self) -> str:
         """Returns the bot token that is used to authenticate with the Telegram API"""
         return self.__get_env("BOT_TOKEN")
+
+    @property
+    def MONGODB_CONNECTION_STRING(self) -> str:
+        return self.__get_env("MONGODB_CONNECTION_STRING")
+
+    @property
+    def MONGODB_DATABASE_NAME(self) -> str:
+        return self.__get_env("MONGODB_DATABASE_NAME")
 
     def __get_env(self, key: str) -> str:
         """Returns the value of the environment variable with the given key"""
@@ -27,4 +30,4 @@ class Config:
         return value
 
 
-config = Config()
+ENV = Env()
