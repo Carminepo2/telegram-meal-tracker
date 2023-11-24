@@ -1,5 +1,7 @@
 import datetime
 
+from database.groups.types import ReminderType
+
 
 BREAKFAST_REMINDER_TIME = datetime.time(hour=00, minute=59)
 LUNCH_REMINDER_TIME = datetime.time(hour=13, minute=10)

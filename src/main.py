@@ -21,7 +21,6 @@ from telegram.ext import ApplicationBuilder
 from configs.env import ENV
 
 from handlers import hello_handler
-from services.meal_reminder_manager import MealReminderManager
 
 
 def main():
@@ -29,8 +28,8 @@ def main():
 
     app = ApplicationBuilder().token(ENV.BOT_TOKEN).build()
 
-    meal_reminder_manager = MealReminderManager(app.job_queue)
-    meal_reminder_manager.start_reminder_jobs()
+    # meal_reminder_manager = MealReminderManager(app.job_queue)
+    # meal_reminder_manager.start_reminder_jobs()
 
     app.add_handler(hello_handler)
 
